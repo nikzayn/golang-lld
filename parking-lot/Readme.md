@@ -3,11 +3,12 @@
 explain all the approaches with best possible illustrations.
 
 ## Overview
-- System Requirements
 - Design Thoughts
 - Usage
 - Technologies Required
-- Issues
-- Edge Cases
 - API Usage
 - Demo
+
+### Design Thoughts
+- Here's the illustration for the parking lot design system: [https://github.com/nikzayn/golang-lld/blob/main/assets/parking-lot-design-management.png]
+
