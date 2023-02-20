@@ -10,5 +10,5 @@ explain all the approaches with best possible illustrations.
 - Demo
 
 ### Design Thoughts
-- Here's the illustration for the parking lot design system: [https://github.com/nikzayn/golang-lld/blob/main/assets/parking-lot-design-management.png]
+- Here's the illustration for the parking lot design system: [https://github.com/nikzayn/golang-lld/blob/master/assets/parking-lot-design-management.png]
 
