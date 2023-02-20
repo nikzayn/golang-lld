@@ -1,0 +1,2 @@
+# Golang LLD
+- In this repository, I will explain all the LLD and HLD designs using Golang. It will help for those who are practicing for interviews and getting along with Golang as an intermediate leaner.
