@@ -25,6 +25,7 @@ type Vehicle struct {
 	Size      VehicleSize
 	EntryTime time.Time
 	ExitTime  time.Time
+	LicenseNo int
 }
 
 //Define a vehicle size
