@@ -2,7 +2,7 @@ package models
 
 // Define Order struct with detials related to stock, quantity, price etc.
 type Order struct {
-	Id        int
+	Id        string
 	Timestamp string
 	Name      string
 	Action    string
