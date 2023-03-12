@@ -1,6 +1,9 @@
 package models
 
-import "sort"
+import (
+	"fmt"
+	"sort"
+)
 
 // Define a OrderBook struct to list the buyOrder and sellOrder
 type OrderBook struct {
@@ -11,10 +14,10 @@ type OrderBook struct {
 const BUY_ACTION = "BUY"
 const SELL_ACTION = "SELL"
 
-/*
-* Description: In this function, we are going to add order accordingly to the action type
-* @Input - order struct
-* TC - O(1) | SC - O(1)
+/**
+ * Description: In this function, we are going to add order accordingly to the action type
+ * @Input - order struct
+ * TC - O(1) | SC - O(1)
  */
 func (ob *OrderBook) AddOrder(order Order) {
 	//Append buy order if action is BUY
@@ -32,5 +35,31 @@ func (ob *OrderBook) AddOrder(order Order) {
 		})
 	} else {
 		return
+	}
+}
+
+/**
+ * Description: In this function, we are going to add order accordingly to the action type
+ * @Input - order struct
+ * TC - O(1) | SC - O(1)
+ */
+func (ob *OrderBook) MatchOrders() {
+	//Traverse ovver length of buyOrder and sellOrders until it's greater than zero
+	for len(ob.BuyOrder) > 0 && len(ob.SellOrder) > 0 {
+		if ob.BuyOrder[0].Price < ob.SellOrder[0].Price {
+			break
+		}
+		if ob.BuyOrder[0].Quantity <= ob.SellOrder[0].Quantity {
+			fmt.Printf("%s %d %.2f %s\n", ob.SellOrder[0].Id, ob.BuyOrder[0].Quantity, ob.SellOrder[0].Price, ob.BuyOrder[0].Id)
+			ob.SellOrder[0].Quantity -= ob.BuyOrder[0].Quantity
+			ob.BuyOrder = ob.BuyOrder[1:]
+			if ob.SellOrder[0].Quantity == 0 {
+				ob.SellOrder = ob.SellOrder[1:]
+			}
+		} else {
+			fmt.Printf("%s %d %.2f %s\n", ob.SellOrder[0].Id, ob.SellOrder[0].Quantity, ob.SellOrder[0].Price, ob.BuyOrder[0].Id)
+			ob.BuyOrder[0].Quantity -= ob.SellOrder[0].Quantity
+			ob.SellOrder = ob.SellOrder[1:]
+		}
 	}
 }
