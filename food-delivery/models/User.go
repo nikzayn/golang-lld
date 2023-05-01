@@ -1,9 +1,12 @@
 package models
 
+import (
+	gender "github.com/nikzayn/lld-golang/food-delivery/enums"
+)
+
 type User struct {
-	UserID    string
-	FirstName string
-	LastName  string
-	Email     string
-	Password  string
+	Name          string
+	Gender        gender.Gender
+	ContactNumber string
+	Pincode       int
 }
