@@ -8,5 +8,5 @@ type User struct {
 	Name          string
 	Gender        gender.Gender
 	ContactNumber string
-	Pincode       int
+	Pincode       string
 }
