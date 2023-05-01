@@ -1,9 +1,9 @@
 package models
 
 type Restaurant struct {
-	CustomerID   string
-	RestaurantID string
-	MenuItems    []Menu
-	TotalAmount  int
-	Status       int
+	Id            string
+	Name          string
+	ListOfPincode []string
+	FoodItem      FoodItem
+	Ratings       Rating
 }
