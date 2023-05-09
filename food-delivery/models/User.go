@@ -20,3 +20,35 @@ func (u *User) createUser() *User {
 	}
 	return &user
 }
+
+func (u User) getName() string {
+	return u.Name
+}
+
+func (u *User) setName(name string) {
+	u.Name = name
+}
+
+func (u User) getGender() gender.Gender {
+	return u.Gender
+}
+
+func (u *User) setGender(gender gender.Gender) {
+	u.Gender = gender
+}
+
+func (u User) getContactNumber() string {
+	return u.ContactNumber
+}
+
+func (u *User) setContactNumber(contactNumber string) {
+	u.ContactNumber = contactNumber
+}
+
+func (u User) getPincode() string {
+	return u.Pincode
+}
+
+func (u *User) setPincode(pincode string) {
+	u.Pincode = pincode
+}
