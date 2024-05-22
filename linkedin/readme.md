@@ -8,3 +8,4 @@
 - Rpeeat the steps till we cover all the features to design LinkedIn platform.
 
 # Design Pattern to discuss before we follow up with the designs
+- Facade Pattern
