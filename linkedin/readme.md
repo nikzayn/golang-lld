@@ -9,3 +9,13 @@
 
 # Design Pattern to discuss before we follow up with the designs
 - Facade Pattern
+- Observor Pattern
+
+
+# Requirements
+- Users can add details to their profile like thier education, work experience, skills, etc.
+- Users can search for pages, view other users's profile, groups, etc.
+- Users can create a post using plain text, images, videos, etc.
+- Users can send connection request to other user
+- Users are able to see that who have viewed their profiles, no. of connections, post impressions, search appearances.
+- 
