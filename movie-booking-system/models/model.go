@@ -1,7 +1,9 @@
 package models
 
 import (
+	"errors"
 	"sync"
+	"time"
 
 	"github.com/nikzayn/lld-golang/movie-booking-system/enums"
 )
@@ -65,4 +67,96 @@ type BaseSeat struct {
 	Status enums.SeatStatus
 	Rate   float64
 	mu     sync.Mutex
+}
+
+func (s *BaseSeat) IsAvailable() bool {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	return s.Status == enums.Available
+}
+
+func (s *BaseSeat) Book() error {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	if s.Status != enums.Available {
+		return errors.New("seat already booked or reserved")
+	}
+	s.Status = enums.Booked
+	return nil
+}
+
+func (s *BaseSeat) GetStatus() enums.SeatStatus {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	return s.Status
+}
+
+// Seat Types
+type Platinum struct{ BaseSeat }
+type Gold struct{ BaseSeat }
+type Silver struct{ BaseSeat }
+
+func (p *Platinum) SetSeat() {}
+func (p *Platinum) SetRate() { p.Rate = 500 }
+
+func (p *Gold) SetSeat()
+func (p *Gold) SetRate() { p.Rate = 300 }
+
+func (p *Silver) SetSeat()
+func (p *Silver) SetRate() { p.Rate = 200 }
+
+// Movie Schema
+type Movie struct {
+	Title                string
+	Duration             int
+	Genre                string
+	ReleaseDate          time.Time
+	Language             string
+	IsSubtitlesAvailable bool
+	Show                 []*ShowTime
+}
+
+// ShowTime Schema
+type ShowTime struct {
+	ShowID   int
+	Start    time.Time
+	Date     time.Time
+	Duration int
+	Seats    []Seat
+}
+
+func (s *ShowTime) ShowAvailableSeats() []Seat {
+	available := []Seat{}
+	for _, seat := range s.Seats {
+		available = append(available, seat)
+	}
+	return available
+}
+
+// MovieTicket Schema
+type MovieTicket struct {
+	TicketID int
+	Seat     Seat
+	Movie    *Movie
+	Show     *ShowTime
+}
+
+// City Schema
+type City struct {
+	Name    string
+	State   string
+	ZipCode string
+	Cinemas []*Cinema
+}
+
+// Cinema Schema
+type Cinema struct {
+	CinemaID int
+	Halls    []*Hall
+	City     *City
+}
+
+type Hall struct {
+	HallID int
+	Shows  []*ShowTime
 }
